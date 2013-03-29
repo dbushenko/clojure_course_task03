@@ -9,11 +9,11 @@
 
 (group Operator
        proposal -> [:all]
-       client -> [:all])
+       clients -> [:all])
 
 (group Director
        proposal -> [:all]
-       client -> [:all]
+       clients -> [:all]
        agents -> [:all])
 
 

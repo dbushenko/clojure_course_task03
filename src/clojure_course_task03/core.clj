@@ -122,7 +122,7 @@
   ;;
   ;; Таблицы:
   ;; proposal -> [id, person, phone, address, region, comments, price]
-  ;; client -> [id, person, phone, region, comments, price_from, price_to]
+  ;; clients -> [id, person, phone, region, comments, price_from, price_to]
   ;; agents -> [proposal_id, agent, done]
 
   ;; Определяем группы пользователей и
@@ -140,7 +140,7 @@
 
   (group Operator
          proposal -> [:all]
-         client -> [:all])
+         clients -> [:all])
 
   ;; Предыдущий макрос создает эти функции
   (select-operator-proposal) ;; select * proposal;
@@ -150,7 +150,7 @@
 
   (group Director
          proposal -> [:all]
-         client -> [:all]
+         clients -> [:all]
          agents -> [:all])
 
   ;; Предыдущий макрос создает эти функции
@@ -191,7 +191,7 @@
 
   ;; Агенту не доступны клиенты
   (with-user Ivanov
-    (select client
+    (select clients
             (fields :all)))  ;; Empty set
 
   ;; Директор может видеть состояние задач агентов
