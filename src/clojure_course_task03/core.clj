@@ -1,4 +1,5 @@
-(ns clojure-course-task03.core)
+(ns clojure-course-task03.core
+  (:require [clojure.set]))
 
 (defn join* [table-name conds]
   (let [op (first conds)
