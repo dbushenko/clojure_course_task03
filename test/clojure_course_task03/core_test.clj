@@ -42,7 +42,7 @@
                            (order :f3)
                            (limit 5)
                            (offset 5)))]
-      (is (= result "SELECT phone,person FROM proposal  WHERE price = 11 JOIN agents ON agents.proposal_id = proposal.id ORDER BY f3 LIMIT 5 OFFSET 5")))))
+      (is (= result "SELECT person,phone FROM proposal  WHERE price = 11 JOIN agents ON agents.proposal_id = proposal.id ORDER BY f3 LIMIT 5 OFFSET 5")))))
 
 
 (deftest select-agent-agents-test
