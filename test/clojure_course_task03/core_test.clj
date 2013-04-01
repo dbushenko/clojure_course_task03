@@ -16,7 +16,6 @@
        clients -> [:all]
        agents -> [:all])
 
-
 (user Ivanov
       (belongs-to Agent))
 
@@ -30,7 +29,6 @@
       (belongs-to Operator,
                   Agent,
                   Director))
-
 
 (deftest ivanov-with-user-test
   (testing "Tesing Ivanov with-user"
@@ -55,4 +53,25 @@
   (testing "Tesing Directorov with-user"
     (let [result (with-user Directorov
                    (select clients (fields :all)))]
-      (is (= result "SELECT * FROM clients ")))))
+      (is (= result "SELECT * FROM clients ")))
+    (let [result (with-user Directorov
+                   (select agents (fields :all)))]
+      (is (= result "SELECT * FROM agents ")))))
+
+
+; Check user that has 2 roles for same table
+
+(group TeamA
+       games -> [id, team_a_location])
+
+(group TeamB
+       games -> [id, team_b_location])
+
+(user Traitor
+      (belongs-to TeamA TeamB))
+
+(deftest traitor-with-user-test
+  (testing "Test traitor that has acces to team_a and team_b locations"
+    (let [result (with-user Traitor
+                    (select games (fields :id :resources :team_a_location :team_b_location)))]
+      (is (= result "SELECT id,team_a_location,team_b_location FROM games ")))))
