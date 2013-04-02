@@ -46,13 +46,13 @@
 
 
 (deftest select-agent-agents-test
-  (testing "Tesing select-agent-agents"
+  (testing "Testing select-agent-agents"
     (let [result (select-agent-agents)]
       (is (= result "SELECT clients_id,proposal_id,agent FROM agents ")))))
 
 
 (deftest directorov-with-user-test
-  (testing "Tesing Directorov with-user"
+  (testing "Testing Directorov with-user"
     (let [result (with-user Directorov
                    (select clients (fields :all)))]
       (is (= result "SELECT * FROM clients ")))))
